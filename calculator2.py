@@ -131,7 +131,6 @@ def evaluate(tokens):
 
 def test(line, expectedAnswer):
     tokens = tokenize(line)
-    evaluateBrackets(tokens)
     actualAnswer = evaluate(tokens)
     if abs(actualAnswer - expectedAnswer) < 1e-8:
         print "PASS! (%s = %f)" % (line, expectedAnswer)
