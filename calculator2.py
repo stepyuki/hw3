@@ -67,7 +67,6 @@ def tokenize(line):
 def evaluateBrackets(tokens):
     index = 0
     bracket_left_index = 0
-
     while index < len(tokens):
         if tokens[index]['type'] == 'RBRACKET':
             for i in range(0,index):
@@ -85,7 +84,7 @@ def evaluateBrackets(tokens):
         
 def evaluateTimesAndDivide(tokens):
     index = 0
-    
+    #this function calculate * and /
     while index < len(tokens):
         #calculate times
         if tokens[index]['type'] == 'TIMES':
@@ -111,9 +110,9 @@ def evaluateTimesAndDivide(tokens):
             
             
 def evaluate(tokens):
-    #this function calculate +,-,* and /
     answer = 0
     tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
+    evaluateBrackets(tokens)
     evaluateTimesAndDivide(tokens)
 
     #calculate + and -
@@ -160,6 +159,5 @@ while True:
     print '> ',
     line = raw_input()
     tokens = tokenize(line)
-    evaluateBrackets(tokens)
     answer = evaluate(tokens)
     print "answer = %f\n" % answer
